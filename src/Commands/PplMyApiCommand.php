@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace BohemicaStudio\PplMyApi\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class PplMyApiCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'ppl-myapi';
 
     public $description = 'My command';
 
