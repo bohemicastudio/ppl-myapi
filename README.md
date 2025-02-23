@@ -171,3 +171,15 @@ Please review [our security policy](../../security/policy) on how to report secu
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+## With ❤️ by Bohemica Studio & Alex Kratky
+
+* [Contact webpage](https://bohemicastudio.com/)
+* [Github webpage](https://github.com/bohemicastudio)
+* [Github webpage of Alex Kratky](https://github.com/alexkratky)
+
+This package was inspired by [PplMyApi](https://github.com/Salamek/PplMyApi) and [php-ppl-create-package-label-api](https://github.com/szymsza/php-ppl-create-package-label-api).
+
+## Searching for Uncomplicated Digital Signage?
+
+Discover **[Bohemica Signage](https://bohemicasignage.com/)**—the hassle-free way to manage digital displays!
