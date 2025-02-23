@@ -2,6 +2,10 @@
 
 All notable changes to `ppl-myapi` will be documented in this file.
 
+## v1.0.2 - 2025-02-23
+
+**Full Changelog**: https://github.com/bohemicastudio/ppl-myapi/compare/v1.0.1...v1.0.2
+
 ## v1.0.1 - 2025-02-23
 
 Fixed README example and namespace for models.
