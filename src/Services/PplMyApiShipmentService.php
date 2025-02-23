@@ -2,8 +2,8 @@
 
 namespace BohemicaStudio\PplMyApi\Services;
 
-use BohemicaStudio\PplMyApi\Models\Data\PplMyApi\Shipment\ShipmentBatch;
 use BohemicaStudio\PplMyApi\Models\Data\Response\ShipmentBatchDetail;
+use BohemicaStudio\PplMyApi\Models\Data\Shipment\ShipmentBatch;
 use BohemicaStudio\PplMyApi\PplMyApi;
 use GuzzleHttp\Utils;
 

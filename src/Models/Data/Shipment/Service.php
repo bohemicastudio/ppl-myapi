@@ -1,6 +1,6 @@
 <?php
 
-namespace BohemicaStudio\PplMyApi\Models\Data\PplMyApi\Shipment;
+namespace BohemicaStudio\PplMyApi\Models\Data\Shipment;
 
 class Service
 {

@@ -54,13 +54,13 @@ Below is a basic example of how to create a shipment batch using this package an
 
 ```php
 use BohemicaStudio\PplMyApi\Enums\ProductList;
-use BohemicaStudio\PplMyApi\Models\Data\PplMyApi\Shipment\ShipmentBatch;
-use BohemicaStudio\PplMyApi\Models\Data\PplMyApi\Shipment\Shipment;
-use BohemicaStudio\PplMyApi\Models\Data\PplMyApi\Shipment\Address;
-use BohemicaStudio\PplMyApi\Models\Data\PplMyApi\Shipment\CashOnDelivery;
-use BohemicaStudio\PplMyApi\Models\Data\PplMyApi\Shipment\ShipmentSet;
-use BohemicaStudio\PplMyApi\Models\Data\PplMyApi\Shipment\LabelSettings;
-use BohemicaStudio\PplMyApi\Models\Data\PplMyApi\Shipment\CompleteLabelSettings;
+use BohemicaStudio\PplMyApi\Models\Data\Shipment\ShipmentBatch;
+use BohemicaStudio\PplMyApi\Models\Data\Shipment\Shipment;
+use BohemicaStudio\PplMyApi\Models\Data\Shipment\Address;
+use BohemicaStudio\PplMyApi\Models\Data\Shipment\CashOnDelivery;
+use BohemicaStudio\PplMyApi\Models\Data\Shipment\ShipmentSet;
+use BohemicaStudio\PplMyApi\Models\Data\Shipment\LabelSettings;
+use BohemicaStudio\PplMyApi\Models\Data\Shipment\CompleteLabelSettings;
 use BohemicaStudio\PplMyApi\Services\PplMyApiShipmentService;
 use BohemicaStudio\PplMyApi\PplMyApi;
 
@@ -69,7 +69,7 @@ $shipmentBatch = new ShipmentBatch(
     shipments: [
         new Shipment(
             // Ideally, use PplMyApiCodelistService to fetch all product types, but you can also use enum as we assume it won't change
-            productType: ProductList::ParcelCzechBusiness->value, 
+            productType: ProductList::ParcelCzechBusinessCod->value, 
             recipient: new Address(
                 country: 'CZ',
                 zipCode: '15500',
@@ -118,19 +118,18 @@ $pplApi = new PplMyApi();
 $service = new PplMyApiShipmentService($pplApi);
 $shipmentBatchUrl = $service->createShipmentBatch($shipmentBatch);
 
-// Then we can get the shipment batch detail - parsing of shipment batch detail will work only if there is only one shipment in the batch
-// Otherwise you need to parse the response yourself
-$shipmentBatchDetail = $service->getShipmentBatchDetail($shipmentBatchUrl);
-
 // Ideally, you should create a delayed queued job for this, that will try this after 1 minute and repeat for let's say 10 minutes (as PPL API does not provide any webhook or callback)
 // But if you are forced to do it in the same request, you can do it like this:
 $attempts = 0;
 while ($attempts < 24) {
     sleep($attempts === 0 ? 3 : 2);
+    // Then we can get the shipment batch detail - parsing of shipment batch detail will work only if there is only one shipment in the batch
+    // Otherwise you need to parse the response yourself
     $detail = $service->getShipmentBatchDetail($shipmentBatchUrl);
     if ($detail->isFullyCompleted()) {
         $count = 0;
         foreach ($detail->items as $item) {
+            // Make sure the directory exists
             $name = 'pdf/' . $item->shipmentNumber . '_' . $count . '.pdf';
             file_put_contents(public_path($name), $pplApi->request($item->labelUrl)->getBody()->getContents());
             $count++;
