@@ -63,6 +63,7 @@ use BohemicaStudio\PplMyApi\Models\Data\Shipment\LabelSettings;
 use BohemicaStudio\PplMyApi\Models\Data\Shipment\CompleteLabelSettings;
 use BohemicaStudio\PplMyApi\Services\PplMyApiShipmentService;
 use BohemicaStudio\PplMyApi\PplMyApi;
+use GuzzleHttp\Exception\ClientException;
 
 // First, create a shipment batch. This is a basic example; you can add more fields as required.
 $shipmentBatch = new ShipmentBatch(
