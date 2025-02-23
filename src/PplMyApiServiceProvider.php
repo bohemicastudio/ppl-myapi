@@ -2,7 +2,6 @@
 
 namespace BohemicaStudio\PplMyApi;
 
-use BohemicaStudio\PplMyApi\Commands\PplMyApiCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -17,9 +16,6 @@ class PplMyApiServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('ppl-myapi')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_ppl_myapi_table')
-            ->hasCommand(PplMyApiCommand::class);
+            ->hasConfigFile();
     }
 }
