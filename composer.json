@@ -1,10 +1,12 @@
 {
     "name": "bohemicastudio/ppl-myapi",
-    "description": "PHP Laravel package for PPL myApi 2",
+    "description": "PHP Laravel package for PPL myApi 2 (CPL API)",
     "keywords": [
         "Bohemica Studio",
         "laravel",
-        "ppl-myapi"
+        "ppl-myapi",
+        "ppl",
+        "cpl"
     ],
     "homepage": "https://github.com/bohemicastudio/ppl-myapi",
     "license": "MIT",
@@ -36,8 +38,7 @@
     },
     "autoload": {
         "psr-4": {
-            "BohemicaStudio\\PplMyApi\\": "src/",
-            "BohemicaStudio\\PplMyApi\\Database\\Factories\\": "database/factories/"
+            "BohemicaStudio\\PplMyApi\\": "src/"
         }
     },
     "autoload-dev": {

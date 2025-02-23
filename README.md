@@ -116,7 +116,13 @@ $shipmentBatch = new ShipmentBatch(
 
 $pplApi = new PplMyApi();
 $service = new PplMyApiShipmentService($pplApi);
-$shipmentBatchUrl = $service->createShipmentBatch($shipmentBatch);
+
+try {
+    $shipmentBatchUrl = $service->createShipmentBatch($shipmentBatch);
+} catch (ClientException $e) {
+    // You may want to output the validation error
+    dd($e->getResponse()->getBody()->getContents());
+}
 
 // Ideally, you should create a delayed queued job for this, that will try this after 1 minute and repeat for let's say 10 minutes (as PPL API does not provide any webhook or callback)
 // But if you are forced to do it in the same request, you can do it like this:
